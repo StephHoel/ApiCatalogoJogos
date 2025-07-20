@@ -27,3 +27,5 @@ if (app.Environment.IsDevelopment())
 app.GameEndpoints();
 
 app.Run();
+
+public partial class Program { }

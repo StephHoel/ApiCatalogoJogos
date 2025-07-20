@@ -14,6 +14,7 @@ public static class GameRoutes
                                         [FromQuery] int pageSize = 5) =>
         {
             var games = await service.GetAllAsync(page, pageSize);
+
             return games.Any() ? Results.Ok(games) : Results.NoContent();
         })
             .WithName("GetGames")
@@ -26,6 +27,7 @@ public static class GameRoutes
         app.MapGet("/api/games/{id:guid}", async (IGameService service, Guid id) =>
         {
             var game = await service.GetByIdAsync(id);
+
             return game is null ? Results.NotFound(ErrorMessages.Game.NotFound) : Results.Ok(game);
         })
             .WithName("GetGameById")
@@ -37,6 +39,7 @@ public static class GameRoutes
         app.MapPost("/api/games", async (IGameService service, GameDto dto) =>
         {
             var created = await service.CreateAsync(dto);
+
             return created is null
                 ? Results.BadRequest(ErrorMessages.Game.CreateError)
                 : Results.Created($"/api/games/{created.Id}", created);
@@ -54,6 +57,7 @@ public static class GameRoutes
                 return Results.BadRequest(ErrorMessages.Game.UnmachId);
 
             await service.UpdateAsync(dto);
+
             return Results.NoContent();
         })
             .WithName("UpdateGame")
@@ -65,6 +69,7 @@ public static class GameRoutes
         app.MapDelete("/api/games/{id:guid}", async (IGameService service, Guid id) =>
         {
             await service.DeleteAsync(id);
+
             return Results.NoContent();
         })
             .WithName("DeleteGame")
