@@ -74,8 +74,8 @@ dotnet test
 1. Clone o projeto:
 
 ```bash
-git clone https://github.com/StephHoel/ApiCatalogoJogos.git
-cd ApiCatalogoJogos
+git clone https://github.com/StephHoel/GameCatalog.git
+cd GameCatalog
 ```
 
 2. Execute o projeto:
